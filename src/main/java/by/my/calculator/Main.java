@@ -59,18 +59,20 @@ public class Main {
     }
 
     public static double check(int year){
-        double percent = 0.5;
-        while (percent < 15){
+        double start_percent = 0.5;
+        double percent;
+        while (start_percent <= 100){
             double capital = 100;
+            percent = start_percent;
             for (int check_Year = year; check_Year < 20; check_Year++){
                 capital -= percent;
-                capital += (MOEX_RATE[check_Year + 1] - MOEX_RATE[check_Year]) / MOEX_RATE[check_Year] * 100;
-                capital -= INFLATION_RATE[check_Year];
+                capital *= MOEX_RATE[check_Year + 1] / MOEX_RATE[check_Year];
+                percent *= (double) 1 + (INFLATION_RATE[check_Year] / 100);
             }
-            if (capital < 100)
+            if (capital < 0)
                 break;
-            percent += 0.5;
+            start_percent += 0.5;
         }
-        return percent - 0.5;
+        return start_percent - 0.5;
     }
 }
