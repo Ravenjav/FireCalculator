@@ -1,4 +1,4 @@
-package by.my.calculator.exception;
+package com.my.calculator.exception;
 
 public class CalculatorException extends Exception{
     public CalculatorException() {

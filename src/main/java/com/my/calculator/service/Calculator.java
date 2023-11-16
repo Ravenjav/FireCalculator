@@ -1,6 +1,6 @@
-package by.my.calculator.service;
+package com.my.calculator.service;
 
-import by.my.calculator.exception.CalculatorException;
+import com.my.calculator.exception.CalculatorException;
 
 public class Calculator {
     private static final double[] MOEX_RATE = {

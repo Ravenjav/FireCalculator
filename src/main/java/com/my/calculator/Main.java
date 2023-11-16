@@ -1,7 +1,7 @@
-package by.my.calculator;
+package com.my.calculator;
 
-import by.my.calculator.exception.CalculatorException;
-import by.my.calculator.service.Calculator;
+import com.my.calculator.exception.CalculatorException;
+import com.my.calculator.service.Calculator;
 
 import java.util.Scanner;
 
