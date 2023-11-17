@@ -29,7 +29,7 @@ public class SharePrice {
         }
     }
 
-    public Boolean yearIsExist(Integer year){
+    public Boolean yearIsExist(Integer year) {
         return sharePrice.containsKey(year);
     }
 

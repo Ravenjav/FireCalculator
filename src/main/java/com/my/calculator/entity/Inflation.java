@@ -29,7 +29,7 @@ public class Inflation {
         }
     }
 
-    public Boolean yearIsExist(Integer year){
+    public Boolean yearIsExist(Integer year) {
         return inflation.containsKey(year);
     }
 
