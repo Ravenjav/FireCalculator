@@ -29,6 +29,10 @@ public class SharePrice {
         }
     }
 
+    public Boolean yearIsExist(Integer year){
+        return sharePrice.containsKey(year);
+    }
+
     public void setYearSharePrice(Integer year, Double price) throws CalculatorException {
         if (sharePrice.containsKey(year)) {
             throw new CalculatorException("Share price already exist this year");

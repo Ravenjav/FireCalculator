@@ -12,7 +12,7 @@ public class Inflation {
 
     public Inflation() {
         inflation = new HashMap<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 21; i++) {
             inflation.put(i + 2002, INFLATION_RATE[i]);
         }
     }
@@ -27,6 +27,10 @@ public class Inflation {
         } else {
             throw new CalculatorException("This year inflation do not exist");
         }
+    }
+
+    public Boolean yearIsExist(Integer year){
+        return inflation.containsKey(year);
     }
 
     public void setYearInflation(Integer year, Double percent) throws CalculatorException {
