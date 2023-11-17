@@ -10,6 +10,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int year = scanner.nextInt();
         Calculator calculator = new Calculator();
-        System.out.println(calculator.findOptimalPercent(year));
+        System.out.println(calculator.findOptimalPercent(year, 2022));
     }
 }
