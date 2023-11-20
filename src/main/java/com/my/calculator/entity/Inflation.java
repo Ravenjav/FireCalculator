@@ -12,8 +12,9 @@ public class Inflation {
 
     public Inflation() {
         inflation = new HashMap<>();
-        for (int i = 0; i < 21; i++) {
-            inflation.put(i + 2002, INFLATION_RATE[i]);
+        int baseInflationYear = 2002;
+        for (int i = 0; i < INFLATION_RATE.length; i++) {
+            inflation.put(i + baseInflationYear, INFLATION_RATE[i]);
         }
     }
 

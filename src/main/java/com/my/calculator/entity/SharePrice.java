@@ -12,8 +12,9 @@ public class SharePrice {
 
     public SharePrice() {
         sharePrice = new HashMap<>();
-        for (int i = 0; i < 21; i++) {
-            sharePrice.put(i + 2002, BASIC_SHARE_PRICE[i]);
+        int baseShareYear = 2002;
+        for (int i = 0; i < BASIC_SHARE_PRICE.length; i++) {
+            sharePrice.put(i + baseShareYear, BASIC_SHARE_PRICE[i]);
         }
     }
 
