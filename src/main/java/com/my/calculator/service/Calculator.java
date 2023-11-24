@@ -14,12 +14,19 @@ public class Calculator {
         sharePrice = new SharePrice();
     }
 
+    /**
+     * Перебирает все возможные проценты изымания начиная с 0.5 до 100
+     * @param startYear год начала жизни на проценты
+     * @param endYear год конца жизни на проценты
+     * @return percent - stop возвращает максимальный валидный процент
+     * @throws CalculatorException
+     */
     public double findOptimalPercent(int startYear, int endYear) throws CalculatorException {
         checkValid(startYear, endYear);
         double step = 0.5, maxPercentValue = 100;
         double percent = step;
         while (percent <= maxPercentValue) {
-            if (checkPercent(percent, startYear, endYear) < 0) {
+            if (checkPercent(percent, startYear, endYear)) {
                 break;
             }
             percent += step;
@@ -27,19 +34,34 @@ public class Calculator {
         return percent - step;
     }
 
-    private double checkPercent(double percent, int startYear, int endYear) throws CalculatorException {
+    /**
+     * Проверяет ликвидность подобранного процента изымания
+     * @param percent процент изымания
+     * @param startYear год начала жизни на проценты
+     * @param endYear год окончания жизни на проценты
+     * @return false если по окончанию капитал имеет отрицательное значение
+     * @throws CalculatorException
+     */
+    private boolean checkPercent(double percent, int startYear, int endYear) throws CalculatorException {
         double capital = 100;
         for (int checkYear = startYear; checkYear < endYear; checkYear++) {
             capital -= percent;
             capital *= sharePrice.getYearSharePrice(checkYear + 1) / sharePrice.getYearSharePrice(checkYear);
             percent = calculateNewPercent(inflation.getYearInflation(checkYear), percent);
         }
-        return capital;
+        return (capital < 0);
     }
 
+    /**
+     * Проверяет наличие данных об инфляции и цене ценных бумаг с startYear по endYear
+     * @param startYear год начала жизни на проценты
+     * @param endYear год окончания жизни на проценты
+     * @throws CalculatorException
+     */
     private void checkValid(int startYear, int endYear) throws CalculatorException {
-        if (startYear >= endYear)
+        if (startYear >= endYear) {
             throw new CalculatorException("input data is not correct");
+        }
         for (int checkYear = startYear; checkYear <= endYear; checkYear++) {
             if (!sharePrice.yearIsExist(checkYear) || !inflation.yearIsExist(checkYear)) {
                 System.out.println(sharePrice.yearIsExist(checkYear) + " " + inflation.yearIsExist(checkYear));
@@ -48,6 +70,12 @@ public class Calculator {
         }
     }
 
+    /**
+     * перерасчитывает процент с учетом инфляции
+     * @param inflation - инфляция
+     * @param percent - текущий процент
+     * @return percent - новый процент с учетом инфляции
+     */
     private double calculateNewPercent(double inflation, double percent){
         percent *= (double) 1 + (inflation / 100);
         return percent;

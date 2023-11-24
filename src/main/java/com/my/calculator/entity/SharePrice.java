@@ -23,11 +23,10 @@ public class SharePrice {
     }
 
     public Double getYearSharePrice(Integer year) throws CalculatorException {
-        if (sharePrice.containsKey(year)) {
-            return sharePrice.get(year);
-        } else {
+        if (!sharePrice.containsKey(year)) {
             throw new CalculatorException("Share price do not exist this year");
         }
+        return sharePrice.get(year);
     }
 
     public Boolean yearIsExist(Integer year) {
@@ -37,8 +36,7 @@ public class SharePrice {
     public void setYearSharePrice(Integer year, Double price) throws CalculatorException {
         if (sharePrice.containsKey(year)) {
             throw new CalculatorException("Share price already exist this year");
-        } else {
-            sharePrice.put(year, price);
         }
+        sharePrice.put(year, price);
     }
 }

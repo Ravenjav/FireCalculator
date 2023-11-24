@@ -8,8 +8,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws CalculatorException {
         Scanner scanner = new Scanner(System.in);
-        int year = scanner.nextInt();
+        int startYear = scanner.nextInt();
+        int endYear = 2022;
         Calculator calculator = new Calculator();
-        System.out.println(calculator.findOptimalPercent(year, 2022));
+        System.out.println(calculator.findOptimalPercent(startYear, endYear));
     }
 }
