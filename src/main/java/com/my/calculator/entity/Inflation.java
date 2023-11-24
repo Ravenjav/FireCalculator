@@ -8,13 +8,13 @@ import java.util.Map;
 public class Inflation {
     private static final double[] INFLATION_RATE = {15.06, 11.99, 11.74, 10.91, 9.00, 11.87, 13.28, 8.80, 8.78, 6.10, 6.58, 6.45, 11.36, 12.91, 5.38, 2.52, 4.27, 03.05, 4.91, 8.39, 11.92,};
 
+    private static final int BASE_INFLATION_YEAR = 2002;
     private Map<Integer, Double> inflation;
 
     public Inflation() {
         inflation = new HashMap<>();
-        int baseInflationYear = 2002;
         for (int i = 0; i < INFLATION_RATE.length; i++) {
-            inflation.put(i + baseInflationYear, INFLATION_RATE[i]);
+            inflation.put(i + BASE_INFLATION_YEAR, INFLATION_RATE[i]);
         }
     }
 

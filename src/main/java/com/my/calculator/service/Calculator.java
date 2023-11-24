@@ -9,6 +9,8 @@ public class Calculator {
     private Inflation inflation;
     private SharePrice sharePrice;
 
+    private static final double STEP = 0.5, MAX_PERCENT_VALUE = 100;
+
     public Calculator() {
         inflation = new Inflation();
         sharePrice = new SharePrice();
@@ -23,15 +25,14 @@ public class Calculator {
      */
     public double findOptimalPercent(int startYear, int endYear) throws CalculatorException {
         checkValid(startYear, endYear);
-        double step = 0.5, maxPercentValue = 100;
-        double percent = step;
-        while (percent <= maxPercentValue) {
+        double percent = STEP;
+        while (percent <= MAX_PERCENT_VALUE) {
             if (checkPercent(percent, startYear, endYear)) {
                 break;
             }
-            percent += step;
+            percent += STEP;
         }
-        return percent - step;
+        return percent - STEP;
     }
 
     /**
